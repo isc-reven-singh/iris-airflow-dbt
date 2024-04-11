@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+  triggerer:
+    networks:
+      - network-airflow
+
+  webserver:
+    networks:
+      - network-airflow
+
+  scheduler:
+    networks:
+      - network-airflow
+
+  postgres:
+    networks:
+      - network-airflow
+
+  iris:
+    image: containers.intersystems.com/intersystems/irishealth-community:2024.1
+    hostname: iris
+    ports:
+    # the superserver port
+    - "1972:1972"
+    - "52773:52773"
+    #volumes:
+    # the durable %SYS volume
+    #- /data/durable:/
+    networks:
+      - network-airflow
+
+networks:
+  network-airflow:
+

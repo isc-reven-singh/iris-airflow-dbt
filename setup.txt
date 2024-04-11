@@ -1,0 +1,30 @@
+curl -sSL install.astronomer.io | sudo bash -s
+
+https://astronomer.github.io/astronomer-cosmos/getting_started/astro.html
+# Creates astro project structure
+astro dev init
+
+# Start astro project
+astro dev start
+
+
+[26/10/23 12:32] Reven Singh
+import intersystems_iris.dbapi._DBAPI as dbapi
+ 
+config = {
+    "hostname": "iris",
+    "port": 1972,
+    "namespace": "USER",
+    "username": "SuperUser",
+    "password": "SYSYS",
+}
+ 
+with dbapi.connect(**config) as conn:
+    with conn.cursor() as cursor:
+        cursor.execute("select ? as one, 2 as two", 1)   # second arg is parameter value
+        for row in cursor:
+            one, two = row
+            print(f"one: {one}")
+            print(f"two: {two}")
+
+docker network connect airflow-dbtiris_a9c7c7_airflow 729fe6be9861d189ea4e6a220f3ec9308dd9501bf0cbeb3ea124d2fd5dba96c6
